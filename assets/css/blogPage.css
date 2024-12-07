@@ -44,7 +44,7 @@ main{
 .blogHeader> h1{
     font-weight: 500;
     font-size:39px;
-    word-break: break-all;
+    word-wrap: break-word;
 }
 .blogHeader .author{
     display: flex;

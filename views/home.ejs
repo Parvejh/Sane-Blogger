@@ -24,7 +24,7 @@
             <h2>LifeStyle</h2>
         </section>
         <section class="blogList">
-            <% if(blogs.length <=0 ) { %>
+            <% if(cleanBlogs.length <=0 ) { %>
                 <h3 id="noblog">
                     No Blogs available. 
                     <a href="/user/admin">
@@ -33,7 +33,7 @@
                 </h3>
             <% }else { %>
                 <ul>
-                    <% blogs.forEach((blog)=>{%>
+                    <% cleanBlogs.forEach((blog)=>{%>
                         <li class="blogcard">
                             <div class="blogImage">
                                 <img src="/images/<%= blog.image %>" alt="">
@@ -45,12 +45,10 @@
                                 <h3>
                                     <%= blog.title %>    
                                 </h3>
-                                <p>
-                                    <!-- <%- blog.content.replace(/<u><br><\/u>/g, '') %> -->
-                                    <%= blog.content %>
-
+                                <p id="blogContentBody">
+                                    <%- blog.content %>
                                 </p>
-                                <a href="/blog/<%= blog.id %>">
+                                <a href="/blog/<%= blog._id %>">
                                     Read more<i class="ri-arrow-right-line"></i>
                                 </a>
                             </div>
