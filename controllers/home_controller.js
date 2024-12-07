@@ -16,7 +16,6 @@ module.exports.home = async function(req,res){
                 allowedAttributes: {}   // Disallow all attributes
             })
         }));
-        console.log(cleanBlogs)
         //send the blogs as blogs
         return res.render('home.ejs',{cleanBlogs,title:"Home | Sane Blogger",message:req.flash('success')});
         // return res.render("admin_blogs",{blogs,title:"Blogs List | Sane Blogger",layout:'admin_layout'});
