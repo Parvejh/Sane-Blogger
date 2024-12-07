@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/header.css">
+
+<header>
+    <a href="/" id="logo">Sane-Blogger</a>
+    <% if(locals.user) { %>
+        <div class="">
+            <a href="/user/signOut" id="getStarted">Log out</a>
+            <a href="/user/admin" id="getStarted"><%= locals.user.name %></a>
+        </div>
+    <%}else{ %>
+        <a href="/user/signIn" id="getStarted">Get Started</a>
+    <%}%>
+    <a href="#" id="logo">Sane-Blogger</a>
+    <a href="/user/signIn" id="getStarted">Get Started</a>
+    <a href="#" id="logo">Sane-Blogger</a>
+    <a href="/user/signIn" id="getStarted">Get Started</a>
+    <a href="#" id="logo">Sane-Blogger</a>
+    <a href="/user/signIn" id="getStarted">Get Started</a>
+</header>

@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="/css/admin_blogList.css">
+
+<!-- Insise section#display -->
+<h2>Blogs List</h2>
+
+<ul id="blogsList">
+    <% if(blogs.length <=0 ) { %>
+        <h3 id="noblog">
+            No Blogs available. 
+            <a href="/user/admin">
+                Add Blogs
+            </a>
+        </h3>
+    <% }else { %>
+        <% blogs.forEach((blog)=>{%>
+            <li>
+                <div class="image">
+                    <img src="/images/<%= blog.image %>" />
+                </div>
+                <div class="content">
+                    <h3>
+                        <%= blog.title %>
+                    </h3>
+                    <p>
+                        <%= blog.content %>
+                    </p>
+                    <div class="content-bottom">
+                        <h4>
+                            <%= blog.author %>
+                        </h4>
+                        <p>
+                            <small>
+                                -
+                            </small>
+                            <%= blog.createdAt.toDateString() %>
+                        </p>
+                    </div>
+                </div>
+                <div class="delete">
+                    <abbr title="Delete Blog">
+                        <a href="/user/admin/deleteBlog/<%= blog._id %>">
+                            <i class="ri-close-large-line"></i>
+                        </a>
+                    </abbr>
+                </div>
+            </li>
+        <%});%>
+    <% } %>
+</ul>

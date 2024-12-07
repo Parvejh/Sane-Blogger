@@ -1,0 +1,41 @@
+const Subscriber = require("../models/subscriber");
+const addSubscriber = require("../models/subscriber");
+const Blog = require('../models/blog');
+
+module.exports.home = async function(req,res){
+    try{
+        //Get the blog list
+        const blogs = await Blog.find();
+        //send the blogs as blogs
+        return res.render('home.ejs',{blogs,title:"Home | Sane Blogger",message:req.flash('success')});
+        // return res.render("admin_blogs",{blogs,title:"Blogs List | Sane Blogger",layout:'admin_layout'});
+    }catch(err){
+        if(err){
+            console.log(`Error in getting the blog list : ${err}`);
+            return res.redirect('back');
+        }
+    }
+}
+
+module.exports.addSub = async function(req,res){
+    try{
+        if(req.isAuthenticated()){
+            console.log("Must be a reader to subscriber!!");
+            return res.redirect('/');
+        }
+        const subscriber = await Subscriber.findOne({email:req.body.email});
+        if(!subscriber){
+            const newSubscriber = await Subscriber.create(req.body);
+            console.log(`Subscriber added, email : ${newSubscriber.email}`);
+        }
+        else{
+            console.log(`Subscriber already exist!`);
+        }
+        return res.redirect('back');        
+    }catch(error){
+        if(error){
+            console.log(`Error in subscribing : ${error}`);
+            return res.redirect('back');
+        }
+    }
+}

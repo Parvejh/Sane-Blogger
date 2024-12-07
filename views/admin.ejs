@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/admin.css">
+
+<!-- Include Editor style. -->
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
+
+<script src="/js/adminBlog.js"></script>
+
+<!-- Insise section#display -->
+<h2>Add a Blog</h2>
+<div class="input">
+    <form action="/user/admin/createBlog" method="POST" enctype="multipart/form-data">
+        <label for="inputImage" id="inputImageLabel">Upload thumbnail</label>
+        <input type="file"  name="image" src="" alt="image" id="inputImage" accept="/image/.jpg, .jpeg, .png"> 
+        <label for="title">Blog title</label>
+        <input type="text" name="title" id="inputTitle">
+        <label for="content">Blog description</label>
+        <!-- <input type="text" name="content" id="inputContent"> -->
+        <textarea name="content" id="inputContent" rows="8" cols="44" ></textarea>
+        <label for="category">Blog category</label>
+        <select name="category" id="inputCategory">
+            <option value="startup" selected>Startup</option>
+            <option value="lifestyle" >LifeStyle</option>
+            <option value="lifestyle" >Travel</option>
+            <option value="lifestyle" >Technology</option>
+        </select>
+        <button type="submit" id="createBlogBtn">
+            Create Blog
+        </button>
+    </form>
+</div>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+
+<script> 
+    var editor = new FroalaEditor('#inputContent');
+</script>
+

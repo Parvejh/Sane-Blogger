@@ -1,0 +1,30 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2vw 8vw;
+}
+header a {
+    text-decoration:none;
+    color:black;
+}
+header a:hover{
+
+    cursor:pointer;
+}
+#logo{
+    font-size:25px;
+    font-weight: 550;
+    border-bottom:1px solid black;
+    padding-bottom: 10px;
+}
+
+#getStarted{
+    border:1px solid black;
+    padding:10px 20px;
+    transition: .1s all;
+}
+
+#getStarted:hover{
+    box-shadow: -2px 2px 2px black;
+}
