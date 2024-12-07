@@ -2,6 +2,13 @@
 
 Sane Blogger is a blogging platform designed to provide a seamless and user-friendly experience for both writers and readers. This project aims to simplify the process of creating, managing, and sharing blog posts.
 
+## Technologies Used
+
+- **Frontend**: React, Redux, Tailwind CSS
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: Passport
+- **Version Control**: Git, GitHub
 
 ## Demo
 
