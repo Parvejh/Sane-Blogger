@@ -41,6 +41,13 @@ passport.checkAuthentication = function(req,res,next){
     return res.redirect('back');
 }
 
+// passport.checkAdmin = function(req,res,next){
+//     if(req.isAuthenticated() && req.user.isAdmin){
+//         return next();
+//     }
+//     return res.redirect('back');
+// }
+
 passport.setAuthenticatedUser = function(req,res,next){
     
     //even if the user is authenticated/ logged in , the data of the user is not available in the locasl but in the cookie ( req.user)

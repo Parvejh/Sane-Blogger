@@ -17,6 +17,36 @@ module.exports.signInPage = function(req,res){
     }
     return res.render('user_signin.ejs',{title:"Sign In | Sane Blogger"});
 }
+module.exports.signUpPage = function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/');
+    }
+    return res.render('user_signup.ejs',{title:"Register | Sane Blogger"});
+}
+
+module.exports.registerUser = async function(req,res){
+    try{
+        //check if the reader exist
+        let user = await User.findOne({email:req.body.email});
+        if(user){
+            req.flash('error',"User already exist!!");
+            return res.redirect('back');
+        }
+        //If the reader does not exist then create the reader
+        const newUser = await User.create({
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            email:req.body.email,
+            password:req.body.password
+        })
+        return res.redirect('/user/signIn');
+    }catch(err){
+        if(err){
+            console.log(`Error in checking the User : ${err}`);
+            return res.redirect('back');
+        }
+    }
+}
 //action to sign in the user
 module.exports.createSession = async function(req,res){
     req.flash('success',"Logged In successfully!!");

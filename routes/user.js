@@ -20,4 +20,9 @@ router.get('/admin/deleteBlog/:id',passport.checkAuthentication,userController.d
 
 router.get('/signOut',passport.checkAuthentication, userController.signOut);
 
+router.get('/signUp',userController.signUpPage);
+router.post('/registerUser',userController.registerUser);
+
+
+
 module.exports = router;

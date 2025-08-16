@@ -5,7 +5,13 @@
     <% if(locals.user) { %>
         <div class="">
             <a href="/user/signOut" id="getStarted">Log out</a>
-            <a href="/user/admin" id="getStarted"><%= locals.user.name %></a>
+            <!-- Check if the user is a admin or not -->
+            <% if(locals.user.isAdmin == 'true') {%>
+                <a href="/user/admin" id="getStarted"><%= locals.user.firstName %></a>
+            <% }else{ %>
+                <!-- If the user is not an admin - redirect to home page -->
+                <a href="/" id="getStarted"><%= locals.user.firstName %></a>
+            <% }%>
         </div>
     <%}else{ %>
         <a href="/user/signIn" id="getStarted">Get Started</a>

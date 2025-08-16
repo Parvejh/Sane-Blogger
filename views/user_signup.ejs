@@ -2,8 +2,16 @@
 
 <main>
     <section class="loginForm">
-        <h2>Login</h2>
-        <form action="/user/createSession" method="POST"> 
+        <h2>Register</h2>
+        <form action="/user/registerUser" method="POST"> 
+            <div class="inputField">
+                <input type="text" name="firstName" id="inputFirstName" placeholder=" ">
+                <label for="inputFirstName">First Name</label>
+            </div>
+            <div class="inputField">
+                <input type="text" name="lastName" id="inputLastName" placeholder=" ">
+                <label for="inputLastName">Last Name</label>
+            </div>
             <div class="inputField">
                 <input type="email" name="email" id="inputEmail" placeholder=" ">
                 <label for="inputEmail">Email</label>
@@ -13,15 +21,15 @@
                 <label for="inputPassword">Password</label>
             </div>
             <button type="submit" id="login-btn">
-                Login
+                Register
             </button>
         </form>
-        <div class="extra">
+        <!-- <div class="extra">
             <div class="signUp">
                 <a href="">Google</a>
-                <a href="/user/signUp" id="signUp-btn">Sign Up</a>
+                <a href="signUp-btn">Sign Up</a>
             </div>
-        </div>
+        </div> -->
     </section>
 
 </main>
