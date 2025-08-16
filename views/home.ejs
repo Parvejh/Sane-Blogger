@@ -1,61 +1,50 @@
-<link rel="stylesheet" href="/css/home.css">
+<section class="mb-8">
+    <h1 class="text-2xl md:text-3xl font-bold">Latest Blogs</h1>
+    <p class="text-gray-600 mt-2">Fresh reads from technology, startup, lifestyle and more.</p>
+</section>
 
-<main>
-    <section class="subscribe">
-        <h1>Latest Blogs</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique ipsum illo optio! Eos, animi perferendis.</p>
-        <div class="subscribeInput">
-            <form action="/addSubscriber" method="POST">
-                <% if(locals.user) { %>
-                    <input id="emailInput" placeholder="Must Be a Reader to Subscribe..." disabled>
-                    <button type="submit" disabled style="pointer-events: none;">Can't Subscribe</button>
-                <%} else{%>
-                    <input type="email" name="email" id="emailInput" placeholder="Enter your email..">
-                    <button type="submit" >Subscribe</button>
-                <%} %>
-            </form>
-        </div>
-    </section>
-    <section class="blog">
-        <section class="blogFilter">
-            <h2 class="active">All</h2>
-            <h2>Technology</h2>
-            <h2>StartUp</h2>
-            <h2>LifeStyle</h2>
-        </section>
-        <section class="blogList">
-            <% if(cleanBlogs.length <=0 ) { %>
-                <h3 id="noblog">
-                    No Blogs available. 
-                    <a href="/user/admin">
-                        Add Blogs
-                    </a>
-                </h3>
-            <% }else { %>
-                <ul>
-                    <% cleanBlogs.forEach((blog)=>{%>
-                        <li class="blogcard">
-                            <div class="blogImage">
-                                <img src="/images/<%= blog.image %>" alt="">
-                            </div>
-                            <div class="blogContent">
-                                <h4>
-                                    <%= blog.category %>
-                                </h4>
-                                <h3>
-                                    <%= blog.title %>    
-                                </h3>
-                                <p id="blogContentBody">
-                                    <%- blog.content %>
-                                </p>
-                                <a href="/blog/<%= blog._id %>">
-                                    Read more<i class="ri-arrow-right-line"></i>
-                                </a>
-                            </div>
-                        </li>
-                    <%});%>
-                </ul>
+<% if (!locals.user) { %>
+    <form action="/addSubscriber" method="POST" class="mb-10 flex flex-col sm:flex-row gap-3">
+        <input name="email" type="email" required placeholder="Your email"
+        class="flex-1 rounded-lg border px-4 py-2" />
+        <button type="submit" class="rounded-lg bg-black text-white px-5 py-2">Subscribe</button>
+    </form>
+<% } %>
+
+<div class="flex gap-3 mb-6 overflow-x-auto">
+    <% (categories || ['All','Technology','StartUp','LifeStyle']).forEach(cat => { 
+        const isActive = (currentCategory || 'All').toLowerCase() === String(cat).toLowerCase();
+    %>
+        <a href="/?<%= cat === 'All' ? '' : ('category=' + encodeURIComponent(cat)) %>"
+        class="px-3 py-1.5 rounded-full border transition
+                <%= isActive ? 'bg-black text-white border-black' : 'bg-white hover:bg-gray-100' %>">
+        <%= cat %>
+        </a>
+    <% }) %>
+</div>
+
+<% if (cleanBlogs.length <= 0) { %>
+    <div class="p-6 rounded-xl border bg-white">No Blogs available.
+        <% if (locals.user && locals.user.isAdmin) { %>
+        <a class="underline ml-2" href="/user/admin">Add Blogs</a>
+        <% } %>
+    </div>
+    <% } else { %>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% cleanBlogs.forEach(blog => { %>
+        <article class="rounded-xl border bg-white overflow-hidden flex flex-col" data-category="<%= (blog.category || '').toLowerCase() %>">
+            <% if (blog.image) { %>
+            <img src="/images/<%= blog.image %>" alt="" class="w-full h-40 object-cover">
             <% } %>
-        </section>
-    </section>
-</main>
+            <div class="p-4 flex-1 flex flex-col">
+            <div class="text-xs uppercase tracking-wide text-gray-500"><%= blog.category %></div>
+            <h3 class="mt-1 font-semibold text-lg"><%= blog.title %></h3>
+            <p class="mt-2 text-sm text-gray-700 line-clamp-4"><%= blog.excerpt %>...</p>
+            <div class="mt-auto pt-4">
+                <a href="/blog/<%= blog._id %>" class="text-sm underline">Read more</a>
+            </div>
+            </div>
+        </article>
+        <% }) %>
+    </div>
+<% } %>

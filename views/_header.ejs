@@ -1,19 +1,18 @@
-<link rel="stylesheet" href="/css/header.css">
+<header class="border-b bg-white/90 backdrop-blur sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="font-semibold text-xl">Sane-Blogger</a>
 
-<header>
-    <a href="/" id="logo">Sane-Blogger</a>
-    <% if(locals.user) { %>
-        <div class="">
-            <a href="/user/signOut" id="getStarted">Log out</a>
-            <!-- Check if the user is a admin or not -->
-            <% if(locals.user.isAdmin == 'true') {%>
-                <a href="/user/admin" id="getStarted"><%= locals.user.firstName %></a>
-            <% }else{ %>
-                <!-- If the user is not an admin - redirect to home page -->
-                <a href="/" id="getStarted"><%= locals.user.firstName %></a>
-            <% }%>
-        </div>
-    <%}else{ %>
-        <a href="/user/signIn" id="getStarted">Get Started</a>
-    <%}%>
+    <div class="flex items-center gap-4">
+      <% if (locals.user) { %>
+        <a href="/user/signOut" class="text-sm px-3 py-1.5 rounded-md border hover:bg-gray-100">Log out</a>
+        <% if (locals.user.isAdmin) { %>
+          <a href="/user/admin" class="text-sm px-3 py-1.5 rounded-md bg-black text-white">Admin</a>
+        <% } else { %>
+          <a href="/" class="text-sm px-3 py-1.5 rounded-md bg-black text-white"><%= locals.user.firstName %></a>
+        <% } %>
+      <% } else { %>
+        <a href="/user" class="text-sm px-3 py-1.5 rounded-md bg-black text-white">Get Started</a>
+      <% } %>
+    </div>
+  </div>
 </header>

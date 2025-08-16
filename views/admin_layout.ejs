@@ -6,22 +6,24 @@
     <title>
         <%= title %>
     </title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
         rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/admin_layout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <%- style %>
 </head>
-<body>
+<body class="min-h-screen bg-gray-50 text-gray-900">
     <%- include('_header_admin') %>
-    <main>
+    <div class="max-w-6xl mx-auto px-4 py-6 grid md:grid-cols-[220px_1fr] gap-6">
         <%- include('admin_aside') %>
-        <section id="display">
-            <%- body %>
-        </section>
-    </main>
+            <div>
+        <%- body %>
+        </div>
+    </div>
     <%- include('_footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <%- script %>
 </body>
 </html>

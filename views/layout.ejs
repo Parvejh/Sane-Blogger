@@ -6,19 +6,34 @@
     <title>
         <%= title %>
     </title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
         rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/layout.css">
+    <!-- Toastify (for flash) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <%- style %>
 </head>
-<body>
+<body class="min-h-screen bg-gray-50 text-gray-900">
     <%- include('_header') %>
-    <%- body %>
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <%- body %>
+    </main>
     <%- include('_footer') %>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        (function () {
+            const f = <%- JSON.stringify(flash || {}) %>;
+            if (f && f.success && f.success.length) {
+                Toastify({ text: f.success[0], duration: 2000, gravity:"bottom" }).showToast();
+            }
+            if (f && f.error && f.error.length) {
+                Toastify({ text: f.error[0], duration: 2000, gravity: "bottom", backgroundColor: "#ef4444" }).showToast();
+            }
+        })();
+    </script>
     <%- script %>
 </body>
 </html>

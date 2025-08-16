@@ -1,35 +1,22 @@
-<link rel="stylesheet" href="/css/userSignIn.css">
-
-<main>
-    <section class="loginForm">
-        <h2>Register</h2>
-        <form action="/user/registerUser" method="POST"> 
-            <div class="inputField">
-                <input type="text" name="firstName" id="inputFirstName" placeholder=" ">
-                <label for="inputFirstName">First Name</label>
-            </div>
-            <div class="inputField">
-                <input type="text" name="lastName" id="inputLastName" placeholder=" ">
-                <label for="inputLastName">Last Name</label>
-            </div>
-            <div class="inputField">
-                <input type="email" name="email" id="inputEmail" placeholder=" ">
-                <label for="inputEmail">Email</label>
-            </div>
-            <div class="inputField">
-                <input type="password" name="password" id="inputPassword" placeholder=" ">
-                <label for="inputPassword">Password</label>
-            </div>
-            <button type="submit" id="login-btn">
-                Register
-            </button>
-        </form>
-        <!-- <div class="extra">
-            <div class="signUp">
-                <a href="">Google</a>
-                <a href="signUp-btn">Sign Up</a>
-            </div>
-        </div> -->
-    </section>
-
-</main>
+<section class="max-w-md mx-auto bg-white border rounded-xl p-6">
+  <h2 class="text-xl font-semibold mb-4">Register</h2>
+  <form action="/user/registerUser" method="POST" class="space-y-4">
+    <label class="block">
+      <span class="text-sm">First Name</span>
+      <input name="firstName" required class="mt-1 w-full border rounded-lg px-3 py-2">
+    </label>
+    <label class="block">
+      <span class="text-sm">Last Name</span>
+      <input name="lastName" class="mt-1 w-full border rounded-lg px-3 py-2">
+    </label>
+    <label class="block">
+      <span class="text-sm">Email</span>
+      <input type="email" name="email" required class="mt-1 w-full border rounded-lg px-3 py-2">
+    </label>
+    <label class="block">
+      <span class="text-sm">Password</span>
+      <input type="password" name="password" required class="mt-1 w-full border rounded-lg px-3 py-2">
+    </label>
+    <button class="w-full bg-black text-white rounded-lg py-2">Register</button>
+  </form>
+</section>

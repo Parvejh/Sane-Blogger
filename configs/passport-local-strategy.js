@@ -2,19 +2,33 @@ const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
 
 passport.use(new LocalStrategy(
-    {usernameField:"email"},
-        async function(email, password, done){
-            //find a user and establish the identity
-            const user = await User.findOne({email:email});
-            if(!user || user.password != password){
-                console.log("invalid username/password")
-                return done(null,false)
+    {
+        usernameField:"email",
+    },
+        async (email, password, done)=>{
+            try{
+                //find a user and establish the identity
+                const user = await User.findOne({email});
+                if(!user){
+                    console.log("Invalid User")
+                    return done(null,false)
+                }
+
+                const ok = await bcrypt.compare(password,user.password)
+                if(!ok) {
+                    console.log("Incorrect Password");
+                    return done(null,false);
+                }
+                //if validation is OK
+                return done(null,user);     //done take two arguments, first is the error ( null if ther is no error) & second is true or false based on validation
+                //This returns the found user to the serialize function
+            }catch(error){
+                console.log("Server Error in passport strategy : ",error)
+                return done(error)
             }
-            //if validation is OK
-            return done(null,user);     //done take two arguments, first is the error ( null if ther is no error) & second is true or false based on validation
-            //This returns the found user to the serialize function
         }
 ))
 

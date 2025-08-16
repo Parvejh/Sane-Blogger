@@ -1,33 +1,16 @@
-<link rel="stylesheet" href="/css/admin_subscriptions.css">
+<section class="bg-white border rounded-xl p-6">
+  <h2 class="text-xl font-semibold mb-4">Subscriptions</h2>
 
-<!-- Insise section#display -->
-<h2>Subscriptions</h2>
-<ul id="subscriptions">
-
-    <% if(subscribers.length <=0 ) { %>
-        <h3 id="nosub">
-            No Subscriber available right now. 
-            <!-- <a href="">
-                Add Blogs
-            </a> -->
-        </h3>
-    <% }else { %>
-
-        <% subscribers.forEach(function(sub){ %>
-            <li>
-                <%= sub.email %> 
-                <!-- <small>
-                    <%=sub.createdAt.getDate() %>
-                    -<%=sub.createdAt.getMonth() %>
-                    -<%=sub.createdAt.getYear() %>
-                </small> -->
-                <a href="/user/admin/deletesubscriber/<%= sub._id %>">
-                    <i class="ri-close-large-line"></i>
-                </a>
-            </li>
-        <% }); %>
-    <% } %>
-
-
-    
-</ul>
+  <% if (subscribers.length <= 0) { %>
+    <div>No Subscriber available right now.</div>
+  <% } else { %>
+    <ul class="divide-y">
+      <% subscribers.forEach(sub => { %>
+        <li class="py-3 flex items-center justify-between">
+          <span><%= sub.email %></span>
+          <a class="text-sm text-red-600 underline" href="/user/admin/deletesubscriber/<%= sub._id %>">Delete</a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
